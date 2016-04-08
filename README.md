@@ -47,8 +47,8 @@ Instead of storing the heroes data locally, it is now being served from a NodeJS
 **`GET` /api/secret/heroes**
 * Returns a list of secret heroes that are available to be viewed **only** if the user is authenticated.
 
-** `GET` /api/secret/heroes/:id**
-* Returns a specific secret public hero based on its `id`.
+**`GET` /api/secret/heroes/:id**
+* Returns a specific secret hero based on its `id`.
 
 The server uses [**express-jwt**](https://github.com/auth0/express-jwt) to protect the secret hero endpoints. The middleware needs to be configured with your Auth0 (or your own) secret key and client ID.
 
