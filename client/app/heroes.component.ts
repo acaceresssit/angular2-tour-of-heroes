@@ -1,5 +1,6 @@
 import { Component, OnInit } from 'angular2/core';
 import { Router } from 'angular2/router';
+import 'rxjs/add/operator/map';
 
 import { Hero } from './hero';
 import { HeroDetailComponent } from './hero-detail.component';
@@ -20,7 +21,12 @@ export class HeroesComponent implements OnInit {
     private _heroService: HeroService) { }
 
   getHeroes() {
-    this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+    this._heroService.getHeroes()
+      .map(res => res.json())
+      .subscribe(
+        data => this.heroes = data,
+        error => console.log(error)
+      );
   }
 
   ngOnInit() {

@@ -6,7 +6,11 @@
     <base href="/">
     <!-- #enddocregion base-href -->
     <title>Angular 2 Tour of Heroes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Auth0 Lock script -->
+    <script src="//cdn.auth0.com/js/lock-9.0.min.js"></script>
+
+    <!-- Setting the right viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <!-- #enddocregion head -->
     <!-- #docregion css -->
@@ -25,8 +29,24 @@
     <!-- #docregion router -->
     <script src="node_modules/angular2/bundles/router.dev.js"></script>
     <!-- #enddocregion router -->
+    <!-- #docregion http -->
+    <script src="node_modules/angular2/bundles/http.dev.js"></script>
+    <!-- #enddocregion http -->
     <script>
-      System.config({packages: {app: {format: 'register', defaultExtension: 'js'}}});
+      System.config({
+        packages: {
+          app: {
+            format: 'register',
+            defaultExtension: 'js'
+          },
+          "angular2-jwt": {
+            defaultExtension: 'js'
+          }          
+        },
+        map: {
+          "angular2-jwt": "node_modules/angular2-jwt/angular2-jwt.js"
+        }
+      });
       System.import('app/main')
             .then(null, console.error.bind(console));
     </script>

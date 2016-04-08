@@ -1,0 +1,17 @@
+{
+  "name": "angular2-tour-of-heroes-server",
+  "version": "0.0.1",
+  "description": "Express server for TOH app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Auth0",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "express-jwt": "^3.3.0"
+  }
+}

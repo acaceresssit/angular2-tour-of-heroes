@@ -1,15 +1,19 @@
 import { Component, Input, OnInit } from 'angular2/core';
-import { RouteParams } from 'angular2/router';
+import { RouteParams, CanActivate } from 'angular2/router';
+import { tokenNotExpired } from 'angular2-jwt';
 
 import { Hero } from './hero';
 import { HeroService } from './hero.service';
 
 @Component({
-  selector: 'my-hero-detail',
+  selector: 'my-secret-hero-detail',
   templateUrl: 'app/hero-detail.component.html',
   styleUrls: ['app/hero-detail.component.css']
 })
-export class HeroDetailComponent implements OnInit {
+
+@CanActivate(() => tokenNotExpired())
+
+export class SecretHeroDetailComponent implements OnInit {
   @Input() hero: Hero;
 
   constructor(
@@ -19,8 +23,12 @@ export class HeroDetailComponent implements OnInit {
 
   ngOnInit() {
     let id = +this._routeParams.get('id');
-    this._heroService.getHero(id)
-      .then(hero => this.hero = hero);
+    this._heroService.getSecretHero(id)
+      .map(res => res.json())
+      .subscribe(
+        data => this.hero = data,
+        error => console.log(error)
+      );
   }
 
   goBack() {
