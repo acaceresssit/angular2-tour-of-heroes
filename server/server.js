@@ -9,8 +9,8 @@ const heroes = require('./heroes');
 app.use(cors());
 
 const authCheck = jwt({
-  secret: new Buffer('YOUR_CLIENT_SECRET', 'base64'),
-  audience: 'YOUR_CLIENT_ID'
+  secret: new Buffer('AUTH0_SECRET', 'base64'),
+  audience: 'AUTH0_CLIENT_ID'
 });
 
 app.get('/api/public/heroes', (req, res) => {
@@ -37,5 +37,5 @@ app.get('/api/secret/heroes/:id', authCheck, (req, res) => {
   res.json(hero);
 });
 
-app.listen(3001);
-console.log('Listening on localhost:3001');
+app.listen(3002);
+console.log('Listening on localhost:3002');

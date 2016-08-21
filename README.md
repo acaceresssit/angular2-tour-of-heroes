@@ -1,6 +1,6 @@
 # Angular 2 Tour of Secret Heroes
 
-This is a fork of [John Papa's](https://twitter.com/John_Papa) [Angular 2 Tour of Heroes repo](https://github.com/johnpapa/angular2-tour-of-heroes) and the aim of it is to show how to add authenticaton to the app using [JSON Web Tokens](https://jwt.io/introduction). JSON Web Tokens (JWT) are retrieved for users with [Auth0](https://auth0.com/signup) and are saved in local storage on a successful login. The user's JWT is then sent to the server in HTTP requests as an `Authorization` header.
+This is a fork of [John Papa's](https://twitter.com/John_Papa) [Angular 2 Tour of Heroes repo](https://github.com/johnpapa/angular2-tour-of-heroes) adapted to use [Anthony Budianto's Angular 2 Starter](https://github.com/antonybudianto/angular2-starter). The aim of it is to show how to add authenticaton to the heroes app using [JSON Web Tokens](https://jwt.io/introduction). JSON Web Tokens (JWT) are retrieved for users with [Auth0](https://auth0.com/signup) and are saved in local storage on a successful login. The user's JWT is then sent to the server in HTTP requests as an `Authorization` header.
 
 ## Running the App
 
@@ -18,7 +18,7 @@ cd server && npm install
 npm start
 ```
 
-You will need to remove the placeholder strings in `auth.service.ts` and `server.js` and put in your Auth0 (or your own) credentials.
+You will need to remove the placeholder strings in `auth.service.ts` and `server.js` and put in your [Auth0](https://manage.auth0.com) (or your own) credentials.
 
 ## Do I Need to Use Auth0?
 
@@ -30,9 +30,9 @@ You can by all means write your own authentication layer for this demo too. Simp
 
 To demonstrate a full authentication setup, there are a number of differences between this fork and the original.
 
-### 1. Login and Logout Buttons
+### 1. Login and Logout Controls
 
-Two new buttons--one for logging in and the other for logging out--have been added to the navbar in `app.component.ts`. Clicks on these buttons call methods that are exposed by a new `AuthService`, which provides logic for opening up the Auth0 Lock widget and saving the user's profile object and JWT in local storage.
+Two new controls--one for logging in and the other for logging out--have been added to the navbar in `shared/navbar/navbar.html`. Clicking these buttons will call methods that are exposed by another new addition: an `AuthService`. This service provides logic for opening up the [Auth0 Lock](https://auth0.com/lock) widget and saving the user's profile object and JWT in local storage.
 
 ### 2. Express Server
 
@@ -66,7 +66,7 @@ There are a few additional components and corresponding routes to handle the sec
 * `SecretHeroesComponent`
 * `SecretHeroDetailComponent`
 
-These routes are restricted with the `CanActivate` lifecycle hook from `angular2/router`. This hook runs before the component wires up, and the `tokenNotExpired` function from **angular2-jwt** is used to return `true` or `false` to it.
+These routes are restricted with the `AuthGuard` provided in `auth/auth-guard.service.ts`.
 
 ### 4. No More Mock Heroes
 
