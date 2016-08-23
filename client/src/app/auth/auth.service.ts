@@ -4,11 +4,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
-  lock = new Auth0Lock('AUTH0_CLIENT_ID', 'AUTH0_DOMAIN', {
-    auth: {
-      redirect: false
-    }
-  });
+  lock = new Auth0Lock('AUTH0_CLIENT_ID', 'AUTH0_DOMAIN');
 
   constructor() {
     this.lock.on('authenticated', (authResult) => {
