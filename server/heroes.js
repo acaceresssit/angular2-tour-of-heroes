@@ -1,6 +1,6 @@
 'use strict';
 
-let publicHeroes = [
+const publicHeroes = [
   { 'id': 11, 'name': 'Mr. Nice' },
   { 'id': 12, 'name': 'Narco' },
   { 'id': 13, 'name': 'Bombasto' },
@@ -13,7 +13,7 @@ let publicHeroes = [
   { 'id': 20, 'name': 'Tornado' }
 ];
 
-let secretHeroes = [
+const secretHeroes = [
   { 'id': 21, 'name': 'Wonder Woman' },
   { 'id': 22, 'name': 'The Incredible Hulk' },
   { 'id': 23, 'name': 'Superman' },
@@ -27,6 +27,6 @@ let secretHeroes = [
 ];
 
 module.exports = {
-  publicHeroes: publicHeroes,
-  secretHeroes: secretHeroes
+  publicHeroes,
+  secretHeroes
 }
